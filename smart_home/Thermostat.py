@@ -7,6 +7,7 @@ from . import NoDevice, postRequest, _BASE_URL
 
 _SETTEMP_REQ = _BASE_URL + "api/setthermpoint"
 _GETTHERMOSTATDATA_REQ  = _BASE_URL + "api/getthermostatsdata"
+_SYNCTHERMSTATE_REQ = BASE_URL + "api/syncthermstate"
 
 class ThermostatData:
     """
@@ -20,6 +21,8 @@ class ThermostatData:
         postParams = {
                 "access_token" : self.getAuthToken
                 }
+        
+        postRequest(_SYNCTHERMSTATE_REQ, postParams)
         resp = postRequest(_GETTHERMOSTATDATA_REQ, postParams)
 
         self.rawData = resp['body']
